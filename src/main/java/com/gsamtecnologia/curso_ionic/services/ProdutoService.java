@@ -1,12 +1,9 @@
 package com.gsamtecnologia.curso_ionic.services;
 
-import com.gsamtecnologia.curso_ionic.dto.CategoriaDTO;
 import com.gsamtecnologia.curso_ionic.dto.ProdutoDTO;
-import com.gsamtecnologia.curso_ionic.entities.Categoria;
 import com.gsamtecnologia.curso_ionic.entities.Produto;
 import com.gsamtecnologia.curso_ionic.mapper.Mappable;
-import com.gsamtecnologia.curso_ionic.repositories.CategoriaRepository;
-import com.gsamtecnologia.curso_ionic.repositories.ProdutoRepository;
+import com.gsamtecnologia.curso_ionic.entities.repositories.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
