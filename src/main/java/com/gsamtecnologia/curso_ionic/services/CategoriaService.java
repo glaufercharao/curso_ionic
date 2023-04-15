@@ -30,10 +30,10 @@ public class CategoriaService implements Mappable {
     public CategoriaDTO atualizar(CategoriaDTO categoriaDTO){
 
         if(categoriaDTO.getId() == null){
-            throw new RuntimeException("ID do Usuário inexistente.");
+            throw new RuntimeException("ID do categoria inexistente.");
         }
          if(!repository.existsById(categoriaDTO.getId())){
-             throw new RuntimeException("ID do usuário invalido.");
+             throw new RuntimeException("ID do categoria invalido.");
          }
 
         return map(repository.save(map(categoriaDTO, Categoria.class)),CategoriaDTO.class);
@@ -42,7 +42,7 @@ public class CategoriaService implements Mappable {
     public void remover(Long id){
 
         if(!repository.existsById(id)){
-            throw new RuntimeException("ID do usuário invalido.");
+            throw new RuntimeException("ID do categoria invalido.");
         }
         repository.deleteById(id);
     }
