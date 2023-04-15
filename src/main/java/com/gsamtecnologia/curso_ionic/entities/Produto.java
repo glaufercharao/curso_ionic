@@ -1,5 +1,6 @@
 package com.gsamtecnologia.curso_ionic.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class Produto implements Serializable {
     private double preco;
 
     @Getter
+    @JsonBackReference // Omite as categorias buscadas por produtos.
     @ManyToMany
     @JoinTable(
             name = "PRODUTO_CATEGORIA",

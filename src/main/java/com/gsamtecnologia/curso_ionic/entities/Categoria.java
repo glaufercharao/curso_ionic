@@ -1,5 +1,6 @@
 package com.gsamtecnologia.curso_ionic.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class Categoria implements Serializable {
     private String nome;
 
     @Getter
+    @JsonManagedReference // Informa que listara os objetos associados.
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 

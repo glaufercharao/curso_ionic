@@ -4,6 +4,7 @@ import com.gsamtecnologia.curso_ionic.dto.CategoriaDTO;
 import com.gsamtecnologia.curso_ionic.entities.Categoria;
 import com.gsamtecnologia.curso_ionic.mapper.Mappable;
 import com.gsamtecnologia.curso_ionic.repositories.CategoriaRepository;
+import com.gsamtecnologia.curso_ionic.services.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class CategoriaService implements Mappable {
     }
 
     public CategoriaDTO buscarPorId(Long id){
-        return map(repository.findById(id),CategoriaDTO.class);
+        return map(repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado ID: "+ id)),CategoriaDTO.class);
     }
 
     public CategoriaDTO salvar(CategoriaDTO categoriaDTO){
