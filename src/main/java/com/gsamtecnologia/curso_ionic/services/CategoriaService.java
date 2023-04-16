@@ -4,8 +4,10 @@ import com.gsamtecnologia.curso_ionic.dto.CategoriaDTO;
 import com.gsamtecnologia.curso_ionic.entities.Categoria;
 import com.gsamtecnologia.curso_ionic.mapper.Mappable;
 import com.gsamtecnologia.curso_ionic.repositories.CategoriaRepository;
+import com.gsamtecnologia.curso_ionic.services.exception.DataIntegretyException;
 import com.gsamtecnologia.curso_ionic.services.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,20 +33,22 @@ public class CategoriaService implements Mappable {
     public CategoriaDTO atualizar(CategoriaDTO categoriaDTO){
 
         if(categoriaDTO.getId() == null){
-            throw new RuntimeException("ID do categoria inexistente.");
+            throw new ObjectNotFoundException("ID do categoria inexistente.");
         }
          if(!repository.existsById(categoriaDTO.getId())){
-             throw new RuntimeException("ID do categoria invalido.");
+             throw new ObjectNotFoundException("ID do categoria invalido.");
          }
 
         return map(repository.save(map(categoriaDTO, Categoria.class)),CategoriaDTO.class);
     }
 
     public void remover(Long id){
-
-        if(!repository.existsById(id)){
-            throw new RuntimeException("ID do categoria invalido.");
+        buscarPorId(id);
+        try {
+            repository.deleteById(id);
+        }catch (DataIntegrityViolationException e){
+            throw new DataIntegretyException("Não é possivel excluir categoria associada a um produto");
         }
-        repository.deleteById(id);
+
     }
 }

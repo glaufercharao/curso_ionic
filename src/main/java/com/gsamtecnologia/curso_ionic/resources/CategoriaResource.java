@@ -33,4 +33,15 @@ public class CategoriaResource {
                 .buildAndExpand(categoriaDTO.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+    @PutMapping
+    public ResponseEntity<CategoriaDTO> atualizar(@RequestBody CategoriaDTO categoriaDTO){
+        categoriaDTO = service.atualizar(categoriaDTO);
+        return ResponseEntity.ok(categoriaDTO);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id){
+        service.remover(id);
+        return ResponseEntity.noContent().build();
+    }
 }
