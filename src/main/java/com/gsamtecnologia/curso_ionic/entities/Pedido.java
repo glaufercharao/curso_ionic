@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -23,5 +25,7 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoEntrega;
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 
 }
