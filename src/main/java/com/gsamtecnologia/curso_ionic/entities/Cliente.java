@@ -1,5 +1,6 @@
 package com.gsamtecnologia.curso_ionic.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gsamtecnologia.curso_ionic.enums.TipoCliente;
 import jakarta.persistence.*;
@@ -34,6 +35,7 @@ public class Cliente implements Serializable {
     @CollectionTable(name = "telefone")
     private Set<String> telefones = new HashSet<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 }

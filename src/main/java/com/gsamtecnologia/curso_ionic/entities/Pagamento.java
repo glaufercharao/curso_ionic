@@ -1,5 +1,6 @@
 package com.gsamtecnologia.curso_ionic.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gsamtecnologia.curso_ionic.enums.EstadoPagamento;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,6 +17,7 @@ public abstract class Pagamento implements Serializable {
     private Long id;
     private EstadoPagamento estado;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId
