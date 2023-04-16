@@ -1,4 +1,4 @@
-package com.gsamtecnologia.curso_ionic.entities.repositories;
+package com.gsamtecnologia.curso_ionic.repositories;
 
 import com.gsamtecnologia.curso_ionic.entities.Cidade;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,5 +1,6 @@
 package com.gsamtecnologia.curso_ionic.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class Estado implements Serializable {
 
     @Getter
     @OneToMany(mappedBy = "estado") //mapeamento reverso
+    @JsonBackReference
     private List<Cidade> cidades = new ArrayList<>();
 
 }

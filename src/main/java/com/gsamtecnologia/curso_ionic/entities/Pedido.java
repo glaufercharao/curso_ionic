@@ -1,30 +1,27 @@
 package com.gsamtecnologia.curso_ionic.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
-@Entity
+import java.time.Instant;
+
 @Data
-public class Endereco implements Serializable {
+@Entity
+public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String logradouro;
-    private String numero;
-    private String complemento;
-    private String bairro;
-    private String cep;
-
+    private Instant date;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+    private Pagamento pagamento;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    @JsonBackReference
     private Cliente cliente;
     @ManyToOne
-    @JoinColumn(name = "cidade_id")
-    private Cidade cidade;
+    @JoinColumn(name = "endereco_entrega_id")
+    private Endereco enderecoEntrega;
 
 }
